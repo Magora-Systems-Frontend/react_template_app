@@ -1,5 +1,5 @@
 import axios from 'axios';
-import lodash from 'lodash';
+import get from 'lodash/get';
 let axiosClient = null;
 
 class AxiosClient {
@@ -9,14 +9,15 @@ class AxiosClient {
     });
 
     const localAxios = axios.create({
-      baseURL: process.env.NODE_ENV === 'development' ? '/api/' : `${this._API_URL}/api/v${this._API_VERSION}`,
+      // baseURL: process.env.NODE_ENV === 'development' ? '/api/' : `${this._API_URL}/api/v${this._API_VERSION}`,
+      baseURL: process.env.NODE_ENV === 'development' ? '/api/' : `${this._API_URL}/api`,
       timeout: 5000,
     });
 
     localAxios.interceptors.request.use((config) => {
       const store = this._store;
       const state = store.getState();
-      const accessToken = lodash.get(state, 'user.accessToken');
+      const accessToken = get(state, 'user.accessToken');
       const headers = {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -31,7 +32,7 @@ class AxiosClient {
     });
 
     localAxios.interceptors.response.use(
-      (response) => Promise.resolve(lodash.get(response, 'data', null)),
+      (response) => Promise.resolve(get(response, 'data', null)),
       (error) => Promise.reject(error.response)
     );
 

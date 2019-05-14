@@ -1,33 +1,73 @@
+const path = require('path');
 const merge = require('webpack-merge');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const common = require('./webpack.common.js');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+// css plugins
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+
+const paths = require('./_paths');
 
 module.exports = merge(common, {
   mode: 'production',
   output: {
-    filename: '[name].[chunkhash].js',
-    chunkFilename: '[name].[chunkhash].chunk.js',
+    filename: '[name]-bundle-[chunkhash:8].js',
+    path: paths.appBuild,
+    publicPath: './assets/',
   },
+
   plugins: [
+    new CopyWebpackPlugin([
+      { from: paths.appAssets, to: paths.appBuildAssets },
+    ]),
     new HtmlWebpackPlugin({
-      template: 'public/template.html',
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeRedundantAttributes: true,
-        useShortDoctype: true,
-        removeEmptyAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        keepClosingSlash: true,
-        minifyJS: true,
-        minifyCSS: true,
-        minifyURLs: true,
-      },
       inject: true,
+      template: paths.appHtml,
+      // minify: {
+      //   removeComments: true,
+      //   collapseWhitespace: true,
+      //   removeRedundantAttributes: true,
+      //   useShortDoctype: true,
+      //   removeEmptyAttributes: true,
+      //   removeStyleLinkTypeAttributes: true,
+      //   keepClosingSlash: true,
+      //   minifyJS: true,
+      //   minifyCSS: true,
+      //   minifyURLs: true,
+      // },
     }),
-    new UglifyJsPlugin({
-      sourceMap: true
-    })
-  ]
+    new MiniCssExtractPlugin({
+      filename: '[name].[hash].css',
+      chunkFilename: '[id].[hash].css',
+    }),
+  ],
+
+  optimization: {
+    minimizer: [
+      new TerserPlugin({ test: /\.js(\?.*)?$/i }),
+      new OptimizeCSSAssetsPlugin({}),
+    ],
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.(scss|sass|css)$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              includePaths: [
+                path.resolve('../node_modules/bootstrap/scss/mixins')
+              ]
+            }
+          }
+        ]
+      },
+    ],
+  },
 });

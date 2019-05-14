@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import PT from 'prop-types';
 import { loadStore, KEYS } from 'utils/localStorage';
 //
-import { Wrapper } from './index.styled';
 import MainMenu from 'components/MainMenu';
 import { Header } from 'components/Header';
 import { CommonModals } from 'components';
 import { setAuthState } from './actions';
+import { Wrapper } from './index.styled';
 
 @connect(
   mapStateToProps,

@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router';
 //
 import { NODE_ENV, API_URL, API_VERSION } from 'config/constants';
 import { Root } from 'pages';
@@ -7,9 +9,10 @@ import * as axiosClient from 'utils/api/axiosClient';
 import { googleAuthInit } from 'utils/googleAuth';
 import { facebookAuthInit } from 'utils/facebookAuth';
 import store from './store';
+import { history } from './store';
 
+// import 'antd/dist/antd.css';
 import './styles/app.scss';
-import 'antd/dist/antd.css';
 
 const MOUNT_NODE = document.getElementById('root');
 
@@ -24,4 +27,12 @@ window.onload = () => {
   facebookAuthInit();
 };
 axiosClient.init({ store, API_URL, API_VERSION });
-ReactDOM.render(<Root store={store} />, MOUNT_NODE);
+
+ReactDOM.hydrate(
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <Root />
+    </ConnectedRouter>
+  </Provider>,
+  MOUNT_NODE
+);

@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{336:function(n,e,t){"use strict";t.r(e),t.d(e,"default",function(){return r});var u=t(1),a=t.n(u);function r(){return a.a.createElement("article",null,a.a.createElement("h1",null,"Page Not Found"))}}}]);

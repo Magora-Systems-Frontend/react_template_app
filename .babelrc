@@ -7,7 +7,7 @@
     "@babel/plugin-transform-regenerator",
     "@babel/plugin-transform-runtime",
     "@babel/plugin-syntax-dynamic-import",
-    "babel-plugin-dynamic-import-webpack",
+    ["import", { "libraryName": "antd", "style":  "css"}, "antd"],
     ["module-resolver", {
       "root": [
         "./src"

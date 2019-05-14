@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import lodash from 'lodash';
+import get from 'lodash/get';
 import { Link } from 'react-router-dom';
 import { Avatar, Menu, Dropdown, Icon } from 'antd';
 import { ROUTES } from 'config/constants';
@@ -49,8 +49,8 @@ export default class HeaderUserControls extends React.PureComponent {
 
   render() {
     const { authState = {} } = this.props;
-    const avatarUrl = lodash.get(authState, 'userInfo.avatarUrl');
-    const userId = lodash.get(authState, 'userInfo.id');
+    const avatarUrl = get(authState, 'userInfo.avatarUrl');
+    const userId = get(authState, 'userInfo.id');
 
     return (
       <Dropdown overlay={this.renderMenu(userId)} trigger={['click']} placement="bottomLeft">

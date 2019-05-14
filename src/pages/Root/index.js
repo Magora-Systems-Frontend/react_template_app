@@ -1,24 +1,18 @@
 import React from 'react';
-import { Provider } from 'react-redux';
 import { Helmet } from 'react-helmet';
-import PT from 'prop-types';
 //
 import { MainWrapper, ErrorBoundary } from 'components';
 import { routes } from 'routes';
 
-export function Root({ store }) {
+export function Root() {
   return (
-    <Provider store={store}>
-      <MainWrapper>
-        <Helmet itleTemplate="%s - Notes" defaultTitle="Notes">
-          <meta name="description" content="Sample Application" />
-        </Helmet>
-        <ErrorBoundary>{routes}</ErrorBoundary>
-      </MainWrapper>
-    </Provider>
+    <MainWrapper>
+      <Helmet itleTemplate="%s - Notes" defaultTitle="Notes">
+        <meta name="description" content="Sample Application" />
+      </Helmet>
+      <ErrorBoundary>{routes}</ErrorBoundary>
+    </MainWrapper>
   );
 }
 
-Root.propTypes = {
-  store: PT.objectOf(PT.oneOfType([PT.func, PT.object])).isRequired,
-};
+Root.propTypes = {};

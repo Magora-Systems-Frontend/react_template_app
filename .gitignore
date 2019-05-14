@@ -20,4 +20,4 @@ npm-debug.log
 application/public
 package-lock.json
 .tmp
-/public
+build

@@ -36,7 +36,7 @@ class Header extends React.PureComponent {
         <div className="full-width header__container">
           <Link to={ROUTES.HOME_PAGE} className="header__left-side">
             <div className="header__logo">
-              <img className="header__logo-img" src="./icons/logo.svg" alt="logo" />
+              <img className="header__logo-img" src="/assets/images/logo.svg" alt="logo" />
               <span className="header__logo-text">{lang.EN.headerTitle}</span>
             </div>
           </Link>

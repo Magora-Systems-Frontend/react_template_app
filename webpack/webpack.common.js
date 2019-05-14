@@ -1,43 +1,23 @@
-const path = require('path');
-const DirectoryNamedWebpackPlugin = require('directory-named-webpack-plugin');
-const makePath = to => path.resolve(__dirname, to);
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+
+const paths = require('./_paths');
 
 module.exports = {
-  entry: './src',
-  output: {
-    filename: 'bundle.js',
-    path: makePath('../public'),
+  entry: {
+    app: paths.appIndexJs,
   },
+  plugins: [
+    new ProgressBarPlugin(),
+  ],
   module: {
     rules: [
       {
         test: /\.js$/,
+        include: paths.appSrc,
         exclude: /(node_modules|bower_components)/,
         use: {
           loader: 'babel-loader',
         },
-      },
-      {
-        test: /\.css/,
-        use: [
-          'style-loader',
-          'css-loader',
-        ]
-      },
-      {
-        test: /\.(scss|sass)$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          {
-            loader: 'sass-loader',
-            options: {
-              includePaths: [
-                path.resolve('../node_modules/bootstrap/scss/mixins')
-              ]
-            }
-          }
-        ]
       },
       {
         test: /\.(woff(2)?|ttf|eot|svg|png|jpg)(\?v=\d+\.\d+\.\d+)?$/,
@@ -51,17 +31,17 @@ module.exports = {
       }
     ]
   },
-  resolve: {
-    extensions: ['.js', '.jsx', '.css'],
-    plugins: [
-      new DirectoryNamedWebpackPlugin({
-        honorIndex: true,
-        exclude: /node_modules/,
-        transformFn(dirName) {
-          return [dirName, dirName.toLowerCase()];
-        }
-      }),
-      require('autoprefixer')
-    ]
-  }
+  // resolve: {
+  //   extensions: ['.js', '.jsx', '.css'],
+  //   plugins: [
+  //     new DirectoryNamedWebpackPlugin({
+  //       honorIndex: true,
+  //       exclude: /node_modules/,
+  //       transformFn(dirName) {
+  //         return [dirName, dirName.toLowerCase()];
+  //       }
+  //     }),
+  //     require('autoprefixer')
+  //   ]
+  // }
 };

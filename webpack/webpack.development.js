@@ -4,6 +4,7 @@ const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const common = require('./webpack.common.js');
 const config = require('../bin');
+const paths = require('./_paths');
 
 const { API_URL = 'http://localhost:8021' } = process.env || {};
 
@@ -11,7 +12,7 @@ module.exports = merge(common, {
   mode: 'development',
   devtool: 'cheap-module-eval-source-map',
   devServer: {
-    contentBase: './public',
+    contentBase: 'src',
     historyApiFallback: true,
     hot: true,
     host: config.HOST,
@@ -27,14 +28,33 @@ module.exports = merge(common, {
   plugins: [
     new HtmlWebpackPlugin({
       inject: true,
-      template: 'public/template.html',
+      template: paths.appHtml,
     }),
-    new webpack.NamedModulesPlugin(),
+    // new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin()
   ],
   resolve: {
     alias: {
       'react-dom': '@hot-loader/react-dom',
     },
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(scss|sass|css)$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              includePaths: [
+                path.resolve('../node_modules/bootstrap/scss/mixins')
+              ]
+            }
+          }
+        ]
+      },
+    ],
   },
 });
