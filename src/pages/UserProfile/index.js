@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch) => ({
   mapStateToProps,
   mapDispatchToProps
 )
-export class UserProfilePage extends React.PureComponent {
+export default class UserProfilePage extends React.PureComponent {
   static propTypes = {
     match: PropTypes.object,
     userState: PropTypes.object,

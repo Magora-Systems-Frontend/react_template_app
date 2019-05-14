@@ -15,7 +15,7 @@ const withReducer = injectReducer({ key: 'home', reducer });
   mapDispatchToProps
 )
 @compose(withReducer)
-export class HomePage extends React.PureComponent {
+export default class HomePage extends React.PureComponent {
   static propTypes = {
     loading: PropTypes.bool,
     onSubmitForm: PropTypes.func,

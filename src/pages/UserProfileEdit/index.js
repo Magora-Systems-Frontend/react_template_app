@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { EditProfile } from 'components';
 
-export class UserProfileEditPage extends React.PureComponent {
+export default class UserProfileEditPage extends React.PureComponent {
   static propTypes = {
     match: PropTypes.object,
   };

@@ -12,7 +12,7 @@ const withReducer = injectReducer({ key: 'PasswordSetPage', reducer });
   mapDispatchToProps
 )
 @compose(withReducer)
-class PasswordSetPage extends PureComponent {
+export default class PasswordSetPage extends PureComponent {
   render() {
     return <PasswordSet />;
   }
@@ -25,5 +25,3 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {};
 }
-
-export default PasswordSetPage;

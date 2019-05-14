@@ -25,6 +25,7 @@ module.exports = merge(common, {
     new HtmlWebpackPlugin({
       inject: true,
       template: paths.appHtml,
+      excludeChunks: ['app'],
       // minify: {
       //   removeComments: true,
       //   collapseWhitespace: true,

@@ -13,7 +13,7 @@ const withReducer = injectReducer({ key: 'RegistrationFormPage', reducer });
   mapDispatchToProps
 )
 @compose(withReducer)
-export class RegistrationFormPage extends React.PureComponent {
+export default class RegistrationFormPage extends React.PureComponent {
   static propTypes = {
     loading: PropTypes.bool,
     onSubmitForm: PropTypes.func,

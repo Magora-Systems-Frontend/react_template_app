@@ -3,6 +3,7 @@ import ReactDOMServer from 'react-dom/server';
 import { StaticRouter } from 'react-router';
 import { Provider } from 'react-redux';
 import { ServerStyleSheet } from 'styled-components'
+import { ChunkExtractor, ChunkExtractorManager } from '@loadable/server';
 
 import { Root } from '../../src/pages';
 import { configureStore } from '../../src/store';
@@ -35,16 +36,24 @@ export default (req, res) => {
     const context = {};
 
     const sheet = new ServerStyleSheet(); // need for getting styled-components tags
+    const extractor = new ChunkExtractor({ statsFile, entrypoints: ['app'] }); // extractor for loadable-components
 
     const componentHTML = ReactDOMServer.renderToString(sheet.collectStyles(
       <Provider store={store}>
         <StaticRouter location={req.url} context={context}>
-          <Root />
+          <ChunkExtractorManager extractor={extractor}>
+            <Root />
+          </ChunkExtractorManager>
         </StaticRouter>
       </Provider>
     ));
 
     const styleTags = sheet.getStyleTags(); // get styled-components tags
+
+    // get loadable-components tags
+    const scriptTags = extractor.getScriptTags();
+    const linkTags = extractor.getLinkTags();
+    const styleTagsLoadable = extractor.getStyleTags();
 
     // inject the rendered app into our html and send it
 
@@ -54,12 +63,12 @@ export default (req, res) => {
 
     let resultHtml = htmlData.replace(
       '<div id="root"></div>',
-      `<div id="root">${componentHTML}</div>${'  '}<script>window.REDUX_STATE = ${stringifiedReduxState};</script>`
+      `<div id="root">${componentHTML}</div>${scriptTags}<script>window.REDUX_STATE = ${stringifiedReduxState};</script>`
     );
 
     resultHtml = resultHtml.replace(
       '<meta name="head-ssr-replace">',
-      `${styleTags}`,
+      `${linkTags}${styleTagsLoadable}${styleTags}`,
     );
 
     return res.send(resultHtml);
