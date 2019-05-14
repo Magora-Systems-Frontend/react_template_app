@@ -55,6 +55,7 @@
     "google-auth-library": "^3.1.2",
     "html-webpack-plugin": "^3.2.0",
     "husky": "^2.1.0",
+    "ignore-loader": "^0.1.2",
     "jsonwebtoken": "^8.5.1",
     "lint-staged": "^8.1.5",
     "mini-css-extract-plugin": "^0.6.0",

@@ -11,7 +11,7 @@ import { facebookAuthInit } from 'utils/facebookAuth';
 import store from './store';
 import { history } from './store';
 
-// import 'antd/dist/antd.css';
+import 'antd/dist/antd.css';
 import './styles/app.scss';
 
 const MOUNT_NODE = document.getElementById('root');

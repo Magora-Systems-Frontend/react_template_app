@@ -3,9 +3,9 @@ import isEmpty from 'lodash/isEmpty';
 import isFunction from 'lodash/isFunction';
 import isString from 'lodash/isString';
 //
-import checkStore from './checkStore';
 import createReducer from '../reducers';
 import { history } from '../store';
+import checkStore from './checkStore';
 
 export function injectReducerFactory(store, isValid) {
   return function injectReducer(key, reducer) {

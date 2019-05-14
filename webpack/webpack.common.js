@@ -30,18 +30,5 @@ module.exports = {
         }]
       }
     ]
-  },
-  // resolve: {
-  //   extensions: ['.js', '.jsx', '.css'],
-  //   plugins: [
-  //     new DirectoryNamedWebpackPlugin({
-  //       honorIndex: true,
-  //       exclude: /node_modules/,
-  //       transformFn(dirName) {
-  //         return [dirName, dirName.toLowerCase()];
-  //       }
-  //     }),
-  //     require('autoprefixer')
-  //   ]
-  // }
+  }
 };

@@ -11,7 +11,9 @@ export function clearStorage() {
  * @returns {string}
  */
 export function getItem(key) {
-  return localStorage.getItem(key);
+  try {
+    return localStorage.getItem(key);
+  } catch (e) {}
 }
 
 /**
@@ -20,7 +22,9 @@ export function getItem(key) {
  * @param data
  */
 export function setItem(key, data) {
-  localStorage.setItem(key, data);
+  try {
+    localStorage.setItem(key, data);
+  } catch (e) {}
 }
 
 /**
@@ -28,12 +32,16 @@ export function setItem(key, data) {
  * @param key
  */
 export function removeItem(key) {
-  localStorage.removeItem(key);
+  try {
+    localStorage.removeItem(key);
+  } catch (e) {}
 }
 
 /**
  *
  */
 export function clear() {
-  localStorage.clear();
+  try {
+    localStorage.clear();
+  } catch (e) {}
 }

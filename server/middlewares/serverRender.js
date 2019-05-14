@@ -1,5 +1,9 @@
-// import React from 'react';
-// import ReactDOMServer from 'react-dom/server';
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
+import { StaticRouter } from 'react-router';
+import { Provider } from 'react-redux';
+
+import { Root } from '../../src/pages';
 
 const path = require('path');
 const fs = require('fs');
@@ -17,6 +21,16 @@ export default (req, res) => {
       return res.status(404).end();
     }
 
+    const initialState = {};
+
+    // render the app as a string
+    const context = {};
+
+    const componentHTML = ReactDOMServer.renderToString(
+      <StaticRouter location={req.url} context={context}>
+        <Root />
+      </StaticRouter>
+    );
 
     // inject the rendered app into our html and send it
 
@@ -24,6 +38,11 @@ export default (req, res) => {
       'Content-Type': 'text/html',
     });
 
-    return res.send(htmlData);
+    let resultHtml = htmlData.replace(
+      '<div id="root"></div>',
+      `<div id="root">${componentHTML}</div>${'  '}<script>window.REDUX_STATE = ${' '};</script>`
+    );
+
+    return res.send(resultHtml);
   });
 }
