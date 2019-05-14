@@ -30,7 +30,6 @@ module.exports = merge(common, {
       inject: true,
       template: paths.appHtml,
     }),
-    // new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin()
   ],
   resolve: {

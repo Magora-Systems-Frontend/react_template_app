@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 const paths = require('./_paths');
@@ -8,6 +9,11 @@ module.exports = {
   },
   plugins: [
     new ProgressBarPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        IS_BROWSER: true,
+      },
+    }),
   ],
   module: {
     rules: [

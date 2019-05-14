@@ -8,8 +8,7 @@ import { Root } from 'pages';
 import * as axiosClient from 'utils/api/axiosClient';
 import { googleAuthInit } from 'utils/googleAuth';
 import { facebookAuthInit } from 'utils/facebookAuth';
-import store from './store';
-import { history } from './store';
+import { configureStore } from './store';
 
 import 'antd/dist/antd.css';
 import './styles/app.scss';
@@ -21,6 +20,13 @@ if (NODE_ENV !== 'production') {
     module.hot.accept();
   }
 }
+
+let initialState = {};
+// if (window && window.REDUX_STATE) {
+//   initialState = window.REDUX_STATE;
+//   delete window.REDUX_STATE;
+// }
+const { store, history } = configureStore(initialState);
 
 window.onload = () => {
   googleAuthInit();
