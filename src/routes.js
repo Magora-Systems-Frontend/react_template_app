@@ -1,4 +1,5 @@
 import React from 'react';
+import loadable from '@loadable/component';
 import { Route, Switch } from 'react-router-dom';
 import { ROUTES } from 'config/constants';
 // pages
@@ -6,12 +7,16 @@ import {
   App,
   HomePage,
   NotFoundPage,
-  PasswordSetPage,
+  // PasswordSetPage,
   RegistrationFormPage,
   UserProfilePage,
   UserProfileEditPage,
 } from 'pages';
 //
+
+// import PasswordSetPage from './pages/PasswordSetPage';
+
+const PasswordSetPage = loadable(() => import(/* webpackPrefetch: true */ './pages/PasswordSetPage'));
 
 export const routes = (
   <Switch>

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { loadableReady } from '@loadable/component';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 //
@@ -34,11 +35,13 @@ window.onload = () => {
 };
 axiosClient.init({ store, API_URL, API_VERSION });
 
-ReactDOM.hydrate(
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <Root />
-    </ConnectedRouter>
-  </Provider>,
-  MOUNT_NODE
-);
+loadableReady(() => {
+  ReactDOM.hydrate(
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <Root />
+      </ConnectedRouter>
+    </Provider>,
+    MOUNT_NODE
+  );
+});
