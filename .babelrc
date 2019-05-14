@@ -7,7 +7,6 @@
     "@babel/plugin-transform-regenerator",
     "@babel/plugin-transform-runtime",
     "@babel/plugin-syntax-dynamic-import",
-    "babel-plugin-styled-components",
     ["import", { "libraryName": "antd", "style":  false}, "antd"],
     ["module-resolver", {
       "root": [
