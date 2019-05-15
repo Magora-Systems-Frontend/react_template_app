@@ -1,5 +1,6 @@
 const path = require('path');
 const merge = require('webpack-merge');
+const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const common = require('./webpack.common.js');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -38,6 +39,11 @@ module.exports = merge(common, {
       //   minifyCSS: true,
       //   minifyURLs: true,
       // },
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production'),
+      },
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[hash].css',

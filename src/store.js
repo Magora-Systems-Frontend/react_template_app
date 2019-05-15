@@ -27,7 +27,7 @@ export function configureStore(initialState = {}, initUrl = '/') {
     middleware.push(reduxLoggerMiddleware);
   }
 
-  if (process.env.NODE_ENV !== 'production') {
+  if (process.env.NODE_ENV === 'development') {
     const devToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION__;
 
     if (typeof devToolsExtension === 'function') {
@@ -40,13 +40,13 @@ export function configureStore(initialState = {}, initUrl = '/') {
     ...enhancers
   );
 
-  const store = createStore(createReducer(initialState, { history }), composedEnhancers);
+  const store = createStore(createReducer({}, { history }), initialState, composedEnhancers);
 
   store.injectedReducers = injectedReducers;
 
   // Make reducers hot reloadable, see http://mxs.is/googmo
   /* istanbul ignore next */
-  if (module.hot && process.env.NODE_ENV !== 'production') {
+  if (module.hot && process.env.NODE_ENV === 'development') {
     module.hot.accept('./reducers', () => {
       store.replaceReducer(createReducer(store.injectedReducers, { history }));
     });

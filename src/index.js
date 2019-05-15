@@ -16,17 +16,15 @@ import './styles/app.scss';
 
 const MOUNT_NODE = document.getElementById('root');
 
-if (NODE_ENV !== 'production') {
-  if (module.hot) {
-    module.hot.accept();
-  }
+if (NODE_ENV === 'development' && module.hot) {
+  module.hot.accept();
 }
 
 let initialState = {};
-// if (window && window.REDUX_STATE) {
-//   initialState = window.REDUX_STATE;
-//   delete window.REDUX_STATE;
-// }
+if (window && window.REDUX_STATE) {
+  initialState = window.REDUX_STATE;
+  delete window.REDUX_STATE;
+}
 const { store, history } = configureStore(initialState);
 
 window.onload = () => {

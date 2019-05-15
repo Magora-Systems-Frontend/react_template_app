@@ -27,7 +27,7 @@ export default (req, res) => {
     }
 
     // configure store
-    const initialState = {};
+    const initialState = req.reduxInitialState || {};
     const initUrl = req.path;
     const { store } = configureStore(initialState, initUrl);
     const reduxState = store.getState();
