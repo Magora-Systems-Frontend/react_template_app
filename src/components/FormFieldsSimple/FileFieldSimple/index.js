@@ -1,6 +1,6 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-import { Button, Icon, Modal, Upload } from 'antd/lib/index';
+import { Button, Icon, Modal, Upload } from 'antd';
 
 export class FileFieldSimple extends React.PureComponent {
   static propTypes = {};
