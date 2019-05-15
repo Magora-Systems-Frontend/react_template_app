@@ -4,10 +4,12 @@ const server = jsonServer.create();
 const appRoutes = require('./routes/index');
 const middlewares = jsonServer.defaults();
 const router = jsonServer.router('./json-server/db.json');
+const serverCORS = require('./server-cors');
 
 const PORT = 8021;
 
 server.use(bodyParser.json());
+server.use(serverCORS);
 
 // in app routes you can add validation, authentication etc..
 appRoutes(server);
