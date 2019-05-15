@@ -10,6 +10,8 @@
     "build:client": "webpack --config webpack/webpack.production.js",
     "build:server": "webpack --config webpack/webpack.server.js",
     "start:server": "node ./build/server",
+    "build:server-dev": "webpack --config webpack/webpack.server.js --watch",
+    "start:server-dev": "nodemon ./build/server",
     "serve": "serve -l 8020 public --single",
     "lint:js": "eslint --ext .js src",
     "lint:style": "stylelint \"src/**/*.scss\" --syntax scss",

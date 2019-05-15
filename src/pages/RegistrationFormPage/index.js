@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet';
 import injectReducer from 'utils/injectReducer';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -26,9 +27,16 @@ export default class RegistrationFormPage extends React.PureComponent {
 
   render() {
     return (
-      <FormWrapper>
-        <Registration />
-      </FormWrapper>
+      <React.Fragment>
+        <Helmet>
+          <title>Registration</title>
+          <meta name="description" content="User registration" />
+        </Helmet>
+
+        <FormWrapper>
+          <Registration />
+        </FormWrapper>
+      </React.Fragment>
     );
   }
 }

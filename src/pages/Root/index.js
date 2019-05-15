@@ -7,7 +7,7 @@ import { routes } from 'routes';
 export function Root() {
   return (
     <MainWrapper>
-      <Helmet itleTemplate="%s - Notes" defaultTitle="Notes">
+      <Helmet defaultTitle="React template">
         <meta name="description" content="Sample Application" />
       </Helmet>
       <ErrorBoundary>{routes}</ErrorBoundary>
