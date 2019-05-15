@@ -8,17 +8,18 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // css plugins
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+// bundle analyze
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const paths = require('./_paths');
 
 module.exports = merge(common, {
   mode: 'production',
   output: {
-    filename: '[name]-bundle-[chunkhash:8].js',
+    filename: '[name]-[chunkhash:8].js',
     path: paths.appBuild,
     publicPath: './assets/',
   },
-
   plugins: [
     new CopyWebpackPlugin([
       { from: paths.appAssets, to: paths.appBuildAssets },
@@ -27,18 +28,11 @@ module.exports = merge(common, {
       inject: true,
       template: paths.appHtml,
       excludeChunks: ['app'],
-      // minify: {
-      //   removeComments: true,
-      //   collapseWhitespace: true,
-      //   removeRedundantAttributes: true,
-      //   useShortDoctype: true,
-      //   removeEmptyAttributes: true,
-      //   removeStyleLinkTypeAttributes: true,
-      //   keepClosingSlash: true,
-      //   minifyJS: true,
-      //   minifyCSS: true,
-      //   minifyURLs: true,
-      // },
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        useShortDoctype: true,
+      },
     }),
     new webpack.DefinePlugin({
       'process.env': {
@@ -49,6 +43,7 @@ module.exports = merge(common, {
       filename: '[name].[hash].css',
       chunkFilename: '[id].[hash].css',
     }),
+    new BundleAnalyzerPlugin(),
   ],
 
   optimization: {
