@@ -22,7 +22,6 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            caller: { target: 'node' },
             plugins: [['dynamic-import-node']],
           },
         },

@@ -1,7 +1,6 @@
 module.exports = (req, res, next) => {
-  const prevInitialState = req.reduxInitialState;
+  // const prevInitialState = req.reduxInitialState;
   req.reduxInitialState = {
-
     userState: {
       payload: {
         id: "e36fdb10-6b38-11e9-a15c-c95eeb7cf1d5",
