@@ -6,5 +6,5 @@ export const SSR_DIRECTIONS = {
 
 export const {
   API_URL = 'http://localhost:8021',
-  SSR_DIRECTION = SSR_DIRECTIONS.SSR_FOR_BOTS,
+  SSR_DIRECTION = SSR_DIRECTIONS.SSR_FOR_ALL,
 } = process.env || {};
