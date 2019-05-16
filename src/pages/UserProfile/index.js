@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getUserProfile } from './actions';
@@ -44,36 +45,42 @@ export default class UserProfilePage extends React.PureComponent {
     const { userState } = this.props;
     const { payload = {} } = userState;
     return (
-      <div className="user">
-        <div className="user__logo-container">
-          <img className="user__logo-container_img" src={payload.avatarUrl} alt="" />
-          <div className="user__logo-container_name">
-            {payload.firstName} {payload.lastName}
+      <React.Fragment>
+        <Helmet>
+          <title>{`Profile ${payload.firstName} ${payload.lastName}`}</title>
+          <meta name="description" content={`User Profile - ${payload.firstName} ${payload.lastName}`} />
+        </Helmet>
+        <div className="user">
+          <div className="user__logo-container">
+            <img className="user__logo-container_img" src={payload.avatarUrl} alt="" />
+            <div className="user__logo-container_name">
+              {payload.firstName} {payload.lastName}
+            </div>
+          </div>
+          <div className="user__text-container">
+            <div className="user__text-container_item">
+              <div className="title">{lang.EN.firstName}:</div>
+              <div className="text">{payload.firstName}</div>
+            </div>
+            <div className="user__text-container_item">
+              <div className="title">{lang.EN.lastName}:</div>
+              <div className="text">{payload.lastName}</div>
+            </div>
+            <div className="user__text-container_item">
+              <div className="title">{lang.EN.userName}:</div>
+              <div className="text">{payload.username}</div>
+            </div>
+            <div className="user__text-container_item">
+              <div className="title">{lang.EN.email}:</div>
+              <div className="text">{payload.email}</div>
+            </div>
+            <div className="user__text-container_item">
+              <div className="title">{lang.EN.city}:</div>
+              <div className="text">{payload.city}</div>
+            </div>
           </div>
         </div>
-        <div className="user__text-container">
-          <div className="user__text-container_item">
-            <div className="title">{lang.EN.firstName}:</div>
-            <div className="text">{payload.firstName}</div>
-          </div>
-          <div className="user__text-container_item">
-            <div className="title">{lang.EN.lastName}:</div>
-            <div className="text">{payload.lastName}</div>
-          </div>
-          <div className="user__text-container_item">
-            <div className="title">{lang.EN.userName}:</div>
-            <div className="text">{payload.username}</div>
-          </div>
-          <div className="user__text-container_item">
-            <div className="title">{lang.EN.email}:</div>
-            <div className="text">{payload.email}</div>
-          </div>
-          <div className="user__text-container_item">
-            <div className="title">{lang.EN.city}:</div>
-            <div className="text">{payload.city}</div>
-          </div>
-        </div>
-      </div>
+      </React.Fragment>
     );
   }
 }
