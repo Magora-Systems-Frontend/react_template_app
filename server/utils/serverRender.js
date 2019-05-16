@@ -18,7 +18,7 @@ export default (req, res) => {
   const statsFile = path.resolve('./build/assets/loadable-stats.json');
 
   // get path of index.html
-  const filePath = path.resolve('./build/assets/index.html');
+  const filePath = path.resolve('./build/assets/ssr-index.html');
 
   // get html template
   fs.readFile(filePath, 'utf8', (err, htmlData) => {

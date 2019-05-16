@@ -27,10 +27,21 @@ module.exports = merge(common, {
     new HtmlWebpackPlugin({
       inject: true,
       template: paths.appHtml,
+      filename: 'ssr-index.html',
       excludeChunks: ['app'],
       minify: {
         removeComments: true,
-        collapseWhitespace: true,
+        // collapseWhitespace: true,
+        useShortDoctype: true,
+      },
+    }),
+    new HtmlWebpackPlugin({
+      inject: true,
+      template: paths.appHtml,
+      filename: 'csr-index.html',
+      minify: {
+        removeComments: true,
+        // collapseWhitespace: true,
         useShortDoctype: true,
       },
     }),
@@ -47,7 +58,7 @@ module.exports = merge(common, {
       resourceRegExp: /^.\/locale$/,
       contextRegExp: /moment$/,
     }),
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
   ],
 
   optimization: {
