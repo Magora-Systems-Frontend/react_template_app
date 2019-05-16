@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { EditProfile } from 'components';
+import { EditProfile } from 'components/EditProfileForm';
 
 export default class UserProfileEditPage extends React.PureComponent {
   static propTypes = {

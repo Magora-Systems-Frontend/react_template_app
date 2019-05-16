@@ -4,7 +4,7 @@ import { message } from 'antd';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { updateProfile } from 'pages/App/actions';
-import { FormWrapper } from 'components';
+import { FormWrapper } from 'components/FormWrapper';
 import { EditProfileForm } from './form';
 import lang from './lang.json';
 

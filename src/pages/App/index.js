@@ -6,7 +6,7 @@ import { loadStore, KEYS } from 'utils/localStorage';
 //
 import MainMenu from 'components/MainMenu';
 import { Header } from 'components/Header';
-import { CommonModals } from 'components';
+import { CommonModals } from 'components/CommonModals';
 import { setAuthState } from './actions';
 import { Wrapper } from './index.styled';
 

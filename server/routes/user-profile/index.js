@@ -4,8 +4,6 @@ const { API_URL } = require('../../config/constants');
 
 export const reqProfile = async (req, res, next) => {
 
-  console.log('here');
-
   const prevInitialState = req.reduxInitialState || {};
 
   const { id: userId } = req.params;

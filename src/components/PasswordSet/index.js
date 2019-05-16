@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { SubmissionError } from 'redux-form';
 import { connect } from 'react-redux';
 import { passwordSet } from 'pages/App/actions';
-import { FormWrapper } from 'components';
+import { FormWrapper } from 'components/FormWrapper';
 import { PasswordSetForm } from './form';
 
 import lang from './lang.json';

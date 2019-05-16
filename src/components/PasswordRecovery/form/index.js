@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { reduxForm, propTypes, Field } from 'redux-form';
-import { TextField } from 'components';
+import { TextField } from 'components/FormFields';
 
 import { Icon, Button, Form, Tooltip } from 'antd';
 

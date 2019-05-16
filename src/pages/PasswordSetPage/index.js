@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { PasswordSet } from 'components';
+import { PasswordSet } from 'components/PasswordSet';
 import injectReducer from '../../utils/injectReducer';
 import reducer from '../HomePage/reducer';
 

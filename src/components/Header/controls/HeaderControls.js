@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'antd';
-import { withCommonModals } from 'components';
+import { withCommonModals } from 'components/CommonModals';
 import './header-controls.scss';
 import lang from './lang.json';
 

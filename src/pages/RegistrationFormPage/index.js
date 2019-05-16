@@ -4,7 +4,8 @@ import { Helmet } from 'react-helmet';
 import injectReducer from 'utils/injectReducer';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { Registration, FormWrapper } from 'components';
+import { Registration } from 'components/RegistrationForm';
+import { FormWrapper } from 'components/FormWrapper';
 import reducer from '../HomePage/reducer';
 
 const withReducer = injectReducer({ key: 'RegistrationFormPage', reducer });

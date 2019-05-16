@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { reduxForm, propTypes, Field } from 'redux-form';
-import { TextField } from 'components';
+import { TextField } from 'components/FormFields';
 import PropTypes from 'prop-types';
 import { Icon, Button, Form } from 'antd';
 import { validatePassword } from 'lib/validation';
